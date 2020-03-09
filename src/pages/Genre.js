@@ -14,17 +14,19 @@ class Genre extends React.Component {
 	}
 	componentWillMount() {
 		axios
-			.get('')
+			.get(`${process.env.REACT_APP_API}/genres/${this.props.match.params.id}`)
 			.then(res => {
 				this.setState({
-					genre: res.data
+					genre: res.data[0]
 				})
 			})
 			.catch(err => {
 				console.log({ err })
 			})
 		axios
-			.get('')
+			.get(
+				`${process.env.REACT_APP_API}/songs?genre=${this.props.match.params.id}`
+			)
 			.then(res => {
 				this.setState({
 					songs: res.data
@@ -50,7 +52,18 @@ class Genre extends React.Component {
 					</div>
 					<div id="songs">
 						<table>
-							{/* songs */}
+							<thead>
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Artist</th>
+									<th>Album</th>
+									<th>Genre</th>
+								</tr>
+							</thead>
+							{this.state.songs.map(song => {
+								return <Song song={song} key={song.id} />
+							})}
 						</table>
 					</div>
 				</div>

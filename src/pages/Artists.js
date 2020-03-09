@@ -12,9 +12,9 @@ class Albums extends React.Component {
 	}
 	componentWillMount() {
 		axios
-			.get('')
+			.get(`${process.env.REACT_APP_API}/artists`)
 			.then(res => {
-				this.setState({})
+				this.setState({ artists: res.data })
 			})
 			.catch(err => {
 				console.log({ err })

@@ -12,7 +12,7 @@ class Genres extends React.Component {
 	}
 	componentWillMount() {
 		axios
-			.get('')
+			.get(`${process.env.REACT_APP_API}/genres`)
 			.then(res => {
 				this.setState({
 					genres: res.data

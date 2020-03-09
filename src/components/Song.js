@@ -9,18 +9,18 @@ class Song extends React.Component {
 	componentDidMount() {
 		let audio = new Howl({
 			html5: true,
-			src: []
+			src: [this.props.song.audio]
 		})
 		this.setState({ audio })
 	}
-	play = () => {
-		//
+	play = x => {
+		x.play()
 		this.setState({
 			playing: true
 		})
 	}
-	stop = () => {
-		//
+	stop = x => {
+		x.stop()
 		this.setState({
 			playing: false
 		})
@@ -32,12 +32,12 @@ class Song extends React.Component {
 					{!this.state.playing ? (
 						<i
 							className="button far fa-play-circle"
-							onClick={e => this.play()}
+							onClick={() => this.play(this.state.audio)}
 						></i>
 					) : (
 						<i
 							className="button far fa-stop-circle"
-							onClick={e => this.stop()}
+							onClick={() => this.stop(this.state.audio)}
 						></i>
 					)}
 				</td>

@@ -6,7 +6,7 @@ import '../styles/album.css'
 class Genre extends React.Component {
 	render() {
 		return (
-			<Link to={''} className="album">
+			<Link to={`/genres/${this.props.genre.id}`} className="album">
 				<div
 					className="cover"
 					style={{ backgroundImage: `url('${this.props.genre.cover}')` }}

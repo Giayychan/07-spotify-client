@@ -12,9 +12,9 @@ class Albums extends React.Component {
 	}
 	componentWillMount() {
 		axios
-			.get(``)
+			.get(`${process.env.REACT_APP_API}/albums`)
 			.then(res => {
-				this.setState({})
+				this.setState({ albums: res.data })
 			})
 			.catch(err => {
 				console.log({ err })
@@ -26,7 +26,7 @@ class Albums extends React.Component {
 				<Sidebar page="albums" />
 				<div id="albums">
 					{this.state.albums.map(album => {
-						return <Album album={album} />
+						return <Album album={album} key={album.id} />
 					})}
 				</div>
 			</div>

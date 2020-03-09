@@ -14,17 +14,20 @@ class Artist extends React.Component {
 	}
 	componentWillMount() {
 		axios
-			.get('')
+			.get(`${process.env.REACT_APP_API}/artists/${this.props.match.params.id}`)
 			.then(res => {
 				this.setState({
-					artist: res.data
+					artist: res.data[0]
 				})
+				console.log(this.state.artist)
 			})
 			.catch(err => {
 				console.log({ err })
 			})
 		axios
-			.get('')
+			.get(
+				`${process.env.REACT_APP_API}/songs?artist=${this.props.match.params.id}`
+			)
 			.then(res => {
 				this.setState({
 					songs: res.data
@@ -50,7 +53,18 @@ class Artist extends React.Component {
 					</div>
 					<div id="songs">
 						<table>
-							{/* songs */}
+							<thead>
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Artist</th>
+									<th>Album</th>
+									<th>Genre</th>
+								</tr>
+							</thead>
+							{this.state.songs.map(song => {
+								return <Song song={song} key={song.id} />
+							})}
 						</table>
 					</div>
 				</div>

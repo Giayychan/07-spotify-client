@@ -6,7 +6,7 @@ import '../styles/artist.css'
 class Artist extends React.Component {
 	render() {
 		return (
-			<Link to={''} className="artist">
+			<Link to={`/artists/${this.props.artist.id}`} className="artist">
 				<div
 					className="cover"
 					style={{ backgroundImage: `url('${this.props.artist.cover}')` }}
