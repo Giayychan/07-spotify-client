@@ -28,18 +28,18 @@
 	padding-left: 0;
 }
 
-@media () {
+@media (max-width: 400px) {
 	#albums {
-		height: ;
-		overflow-y: ;
-		grid-column-gap: ;
-		grid-row-gap: ;
+		height: calc(100vh - 59px);
+		overflow-y: auto;
+		grid-column-gap: 35px;
+		grid-row-gap: 35px;
 		padding: 10px;
 		box-sizing: border-box;
 		grid-template-columns: repeat(auto-fit, 160px);
 	}
 	#album {
-		grid-template-columns: ;
+		grid-template-columns: 1fr;
 		padding: 10px;
 		grid-template-rows: 120px auto;
 		max-height: calc(100vh - 60px);

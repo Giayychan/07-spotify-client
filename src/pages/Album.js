@@ -62,9 +62,11 @@ class Album extends React.Component {
 									<th>Genre</th>
 								</tr>
 							</thead>
-							{this.state.songs.map(song => {
-								return <Song song={song} key={song.id} />
-							})}
+							<tbody>
+								{this.state.songs.map(song => {
+									return <Song song={song} key={song.id} />
+								})}
+							</tbody>
 						</table>
 					</div>
 				</div>

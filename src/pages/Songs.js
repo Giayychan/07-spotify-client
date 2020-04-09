@@ -8,8 +8,14 @@ import Song from '../components/Song'
 
 class Songs extends React.Component {
 	state = {
-		songs: []
+		songs: [],
+		playing: false
 	}
+
+	stopAllSongs = () => {
+		this.setState({ playing: false })
+	}
+
 	componentWillMount() {
 		axios
 			.get(`${process.env.REACT_APP_API}/songs`)
@@ -20,6 +26,7 @@ class Songs extends React.Component {
 				console.log({ err })
 			})
 	}
+
 	render() {
 		return (
 			<div id="page">
@@ -35,9 +42,18 @@ class Songs extends React.Component {
 								<th>Genre</th>
 							</tr>
 						</thead>
-						{this.state.songs.map(song => {
-							return <Song song={song} key={song.id} />
-						})}
+						<tbody>
+							{this.state.songs.map(song => {
+								return (
+									<Song
+										song={song}
+										key={song.id}
+										playing={this.state.playing}
+										stopAllSongs={this.stopAllSongs}
+									/>
+								)
+							})}
+						</tbody>
 					</table>
 				</div>
 			</div>

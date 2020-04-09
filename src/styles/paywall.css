@@ -60,10 +60,10 @@
 	background: #c71d0c;
 }
 
-@media () {
+@media (max-width: 400px) {
 	#card {
-		max-width: ;
-		margin-top: ;
+		max-width: 100vw;
+		margin-top: 0;
 		box-sizing: border-box;
 	}
 }

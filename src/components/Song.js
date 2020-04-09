@@ -6,6 +6,12 @@ class Song extends React.Component {
 		playing: false,
 		audio: {}
 	}
+	componentWillReceiveProps(props) {
+		if (props.playing) {
+			this.stop()
+		}
+	}
+
 	componentDidMount() {
 		let audio = new Howl({
 			html5: true,
@@ -13,14 +19,15 @@ class Song extends React.Component {
 		})
 		this.setState({ audio })
 	}
-	play = x => {
-		x.play()
+	play = () => {
+		this.props.stopAllSongs()
 		this.setState({
 			playing: true
 		})
+		this.state.audio.play()
 	}
-	stop = x => {
-		x.stop()
+	stop = () => {
+		this.state.audio.stop()
 		this.setState({
 			playing: false
 		})
@@ -32,12 +39,12 @@ class Song extends React.Component {
 					{!this.state.playing ? (
 						<i
 							className="button far fa-play-circle"
-							onClick={() => this.play(this.state.audio)}
+							onClick={() => this.play()}
 						></i>
 					) : (
 						<i
 							className="button far fa-stop-circle"
-							onClick={() => this.stop(this.state.audio)}
+							onClick={() => this.stop()}
 						></i>
 					)}
 				</td>

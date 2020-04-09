@@ -75,10 +75,10 @@
 
 /* Media */
 
-@media() {
+@media (max-width: 400px) {
 	#page > #songs {
-		height: ;
-		overflow-y: ;
+		height: calc(100vh - 59px);
+		overflow-y: auto;
 	}
 	#songs > table {
 		margin-bottom: 0;

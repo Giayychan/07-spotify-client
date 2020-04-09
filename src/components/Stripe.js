@@ -6,14 +6,30 @@ class Stripe extends React.Component {
 	state = {
 		message: {
 			content: '',
-			type: ''
-		}
+			type: '',
+		},
 	}
-	pay = () => {}
+	pay = (e) => {
+		this.props.stripe.createToken({}).then((token) => {
+			axios.post(`${process.env.REACT_APP_API}/pay`, token).then((res) => {
+				let newMessage = this.state.message
+				if (res.data.status === 'succeeded') {
+					newMessage.type = res.data.status
+					newMessage.content = res.data.outcome.seller_message
+					this.setState({ message: newMessage })
+					setTimeout(this.props.closePaywall, 2000)
+				} else {
+					newMessage.type = res.data.type
+					newMessage.content = res.data.message
+					this.setState({ message: newMessage })
+				}
+			})
+		})
+	}
 	getMessageClass = () => {
 		if (!this.state.message.type) {
 			return ''
-		} else if (this.state.message.type === 'success') {
+		} else if (this.state.message.type === 'succeeded') {
 			return 'success'
 		} else {
 			return 'error'
@@ -30,7 +46,7 @@ class Stripe extends React.Component {
 				) : (
 					''
 				)}
-				<button className="submit" onClick={this.pay}>
+				<button className='submit' onClick={this.pay}>
 					Pay
 				</button>
 			</>

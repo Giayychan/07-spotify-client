@@ -87,13 +87,13 @@
 
 /* Media */
 
-@media () {
+@media (max-width: 400px) {
 	/* sidebar */
 	#sidebar {
-		position: ;
-		bottom: ;
-		height: ;
-		width: ;
+		position: fixed;
+		bottom: 0;
+		height: 59px;
+		width: 100vw;
 		display: grid;
 		grid-template-columns: 4fr 1fr;
 		border-right: 0;
