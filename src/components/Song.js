@@ -38,12 +38,12 @@ class Song extends React.Component {
 				<td>
 					{!this.state.playing ? (
 						<i
-							className="button far fa-play-circle"
+							className='button far fa-play-circle'
 							onClick={() => this.play()}
 						></i>
 					) : (
 						<i
-							className="button far fa-stop-circle"
+							className='button far fa-stop-circle'
 							onClick={() => this.stop()}
 						></i>
 					)}

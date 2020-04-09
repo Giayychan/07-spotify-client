@@ -10,22 +10,23 @@ class Albums extends React.Component {
 	state = {
 		albums: []
 	}
+
 	componentWillMount() {
 		axios
 			.get(`${process.env.REACT_APP_API}/albums`)
-			.then(res => {
+			.then((res) => {
 				this.setState({ albums: res.data })
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log({ err })
 			})
 	}
 	render() {
 		return (
-			<div id="page">
-				<Sidebar page="albums" />
-				<div id="albums">
-					{this.state.albums.map(album => {
+			<div id='page'>
+				<Sidebar page='albums' />
+				<div id='albums'>
+					{this.state.albums.map((album) => {
 						return <Album album={album} key={album.id} />
 					})}
 				</div>
